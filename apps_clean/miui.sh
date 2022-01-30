@@ -35,7 +35,7 @@ KSICibaEngine
 VirtualSim
 YouDaoEngine
 CatcherPatch
-MiuiVideo
+CatchLog
 MIDrive
 MiDrive
 Huanji
@@ -45,6 +45,11 @@ shop
 xiaomishop
 Xiaomishop
 NfcNci
+com.xiaomi.youpin
+com.taobao.taobao
+tv.danmaku.bili
+MIUIQuickSearchBox
+QuickSearchBox
 "
 
 for delete_dir in $apps_dir ;do
