@@ -64,6 +64,35 @@ jobs:
           mkdir ./tmp
           wget -U "Mozilla/5.0" ${{ github.event.inputs.ROM_URL }} -O "$GITHUB_WORKSPACE/Tool-SGSI-build/tmp/${{ github.event.inputs.ZIP_NAME }}"
           echo "zip_file: $(ls "$GITHUB_WORKSPACE/Tool-SGSI-build/tmp/")"
+          
+      - name: Make AB type GSI‌‌...
+        if: ${{ github.event.inputs.SGSI_TYPE }} == 'AB' || ${{ github.event.inputs.SGSI_TYPE }} == 'BOTH'
+        run: |
+          sudo bash $GITHUB_WORKSPACE/Tool-SGSI-build/make.sh AB << EOF
+          ${{ github.event.inputs.ZIP_NAME }}
+          y
+          y
+          ${{ github.event.inputs.OS_TYPE }}
+          y
+
+      - name: Packing(AB)...
+        if: ${{ github.event.inputs.SGSI_TYPE }} == 'AB' || ${{ github.event.inputs.SGSI_TYPE }} == 'BOTH'
+        run: |
+          cd $GITHUB_WORKSPACE/Tool-SGSI-build
+          pwd
+          zip -r AB_${{ github.event.inputs.REPACK_NAME }} SGSI/*
+          ls "AB_${{ github.event.inputs.REPACK_NAME }}"
+          echo "--------------------------------------"
+          ls
+          echo "--------------------------------------"
+          mkdir upload_ab
+          echo "--------------------------------------"
+          ls upload_ab
+          echo "--------------------------------------"
+          if [ $(ls -l AB_${{ github.event.inputs.REPACK_NAME }} | awk '{print $5}') -gt 2147483647 ]; then tar cvzpf - AB_${{ github.event.inputs.REPACK_NAME }} | split -d -b 1024m - upload_ab/AB_${{ github.event.inputs.REPACK_NAME }}; else mv AB_${{ github.event.inputs.REPACK_NAME }} upload_ab/AB_${{ github.event.inputs.REPACK_NAME }}; fi
+          echo "--------------------------------------"
+          ls upload_ab
+          echo "--------------------------------------"
 
       - name: Make A-only type GSI‌‌...
         run: |
