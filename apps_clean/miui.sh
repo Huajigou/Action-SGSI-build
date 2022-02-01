@@ -50,6 +50,10 @@ com.taobao.taobao
 tv.danmaku.bili
 MIUIQuickSearchBox
 QuickSearchBox
+NewHome
+MIMobileNoti
+MIShop
+
 "
 
 for delete_dir in $apps_dir ;do
