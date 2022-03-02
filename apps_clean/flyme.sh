@@ -6,14 +6,9 @@ cd $LOCALDIR
 systemdir=$1
 
 apps_dir="
-DataMigration
-Email
 Life
-PerfUI
 Reader
 RemoteCooperation
-VideoClips
-DesktopBackup
 FamilyGuard
 GmsCore
 Phonesky_CN
